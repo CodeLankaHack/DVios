@@ -50,12 +50,21 @@
             // Send message to AI
             if(!isLeft){
                 $url = '/Connector.php?msg=' + text;
-                $.get($url, function (data) {
-                    alert(data['message']);
+                $.get($url, function (response) {
+                    processResponse(response);
                 });
             }
 
             return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
+        };
+        processResponse = function (response) {
+            setTimeout(function () {
+                sendMessage(response['message'], true);
+            }, 1000);
+
+            if(response['requestType']){
+                    
+            }
         };
         $('.send_message').click(function (e) {
             return sendMessage(getMessageText(), false);
