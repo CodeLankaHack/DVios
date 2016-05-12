@@ -7,6 +7,7 @@ import com.google.gson.Gson;
  */
 public class CommObject {
     public int error = 0;
+    public Message messageType = null;
     public String message = null;
     public String mainItem = null;
     public String location = null;
