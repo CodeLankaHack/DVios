@@ -67,7 +67,7 @@
                     $('.panel').append("<div class=\"panel-heading\"><h3 class=\"panel-title\">Cheapest Item</h3></div><div class=\"panel-body\">" + response['mainItem'] + "<br>Rs. " + response['price'] + "</div>");
                 }
                 else if(response['messageType']=='Location'){
-
+                    
                 }
                 else if(response['messageType']=='Price'){
 
