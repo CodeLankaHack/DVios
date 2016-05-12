@@ -168,3 +168,23 @@ Refresher
 Dettol
 35
 Soap stall
+Tissue
+paper tissue
+Flora
+100
+Sanitary stall
+Tissue
+paper tissue
+Jonson and Jonson
+120
+Sanitary stall
+Tissue
+paper tissue
+Baby cheramy
+75
+Sanitary stall
+Tissue
+Wet wipes
+Flora
+200
+Sanitary stall
