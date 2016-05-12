@@ -1,0 +1,19 @@
+.info-window{
+    position: absolute;
+    width: 77%;
+    max-width: 700px;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #fff;
+    left:700;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    background-color: #f8f8f8;
+    overflow: hidden;
+}
+
+.animation-info{
+    height: 100%;
+    width: 100%;
+}
