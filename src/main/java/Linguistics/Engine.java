@@ -1,6 +1,7 @@
 package Linguistics;
 
 import Communicator.CommObject;
+import Communicator.Message;
 import com.mongodb.*;
 
 import java.util.ArrayList;
@@ -56,6 +57,7 @@ public class Engine {
                 object.location = "" + dbObject.get("location");
                 object.price = "" + dbObject.get("price");
                 object.type = "" + dbObject.get("type");
+                object.messageType = Message.Location;
                 output.add(object);
                 System.out.println(output.toString());
                 return object.toString();
@@ -86,7 +88,7 @@ public class Engine {
                 String comparator = (input.get("JJS").size() != 0) ? input.get("JJS").get(0) : null;
                 if (comparator != null) {
                     return comparatorLogic.compare(nouns, comparator).toString();
-                }else{
+                } else {
                     return ErrorMessage.getError(ErrorType.NotUnderstood).toString();
                 }
 //                if (nouns.size() == 0) {
