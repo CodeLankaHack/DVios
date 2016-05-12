@@ -1,11 +1,11 @@
 .info-window{
     position: absolute;
     width: 77%;
-    max-width: 670px;
+    max-width: 900px;
     height: 100%;
     border-radius: 10px;
     background-color: #fff;
-    left:685;
+    left:910;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
@@ -18,7 +18,7 @@
     width: 100%;
 }
 
-#display{
+#display-image{
     width: 100%;
     height:auto;
 }

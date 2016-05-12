@@ -67,7 +67,7 @@
                     $('.panel').append("<div class=\"panel-heading\"><h3 class=\"panel-title\">Cheapest Item</h3></div><div class=\"panel-body\">" + response['mainItem'] + "<br>Rs. " + response['price'] + "</div>");
                 }
                 else if(response['messageType']=='Location'){
-                    
+
                 }
                 else if(response['messageType']=='Price'){
 
@@ -83,19 +83,5 @@
                 return sendMessage(getMessageText(), false);
             }
         });
-        // setInterval(function () {
-        //     $.get('/message/get', function (data) {
-        //         if(data.length>0){
-        //             i=0;
-        //             if(i<data.length){
-        //                 $('.message_input').val(data);
-        //                 setTimeout(function () {
-        //                     $('.message_input').val('');
-        //                     sendMessage(data, true);
-        //                 }, 500);
-        //             }
-        //         }
-        //     })
-        // }, 1000);
     });
 }.call(this));
