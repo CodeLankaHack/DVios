@@ -58,7 +58,7 @@ public class Engine {
                 object.type = "" + dbObject.get("type");
                 output.add(object);
                 System.out.println(output.toString());
-                return output.toString();
+                return object.toString();
             } else {
 
                 return failureMessage();

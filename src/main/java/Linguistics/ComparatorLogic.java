@@ -9,6 +9,8 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,6 +24,7 @@ public class ComparatorLogic {
         // Get the nounds that are in the DB
         List<String> validNouns = (new NounValidator()).getValidNouns(nouns);
         // Detect the attribute of the first noun in the DB
+        System.out.println(Arrays.toString(validNouns.toArray()));
         Attribute attribute = (new AttributeDetector()).getAttribute(validNouns.get(0));
         CommObject commObject = new CommObject();
         switch (attribute) {
