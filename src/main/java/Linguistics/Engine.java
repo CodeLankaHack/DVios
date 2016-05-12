@@ -28,6 +28,7 @@ public class Engine {
         String itemType = null;
         List<String> nouns = new ArrayList<String>();
         List<CommObject> output = new ArrayList<CommObject>();
+        // WHERE
         if (wrbAnalyzer(input)) {
             try {
                 itemName = input.get("NN").get(0);
@@ -78,7 +79,9 @@ public class Engine {
                     nouns.addAll(input.get("NNS"));
                 // Get the cheaper item out of two
 
-            } else if (jjsAnalyzer(input)) {
+            }
+            // Comparator CHEAPEST
+            else if (jjsAnalyzer(input)) {
                 // Get the superlative item
                 if (input.containsKey("NN"))
                     nouns = input.get("NN");
@@ -91,34 +94,14 @@ public class Engine {
                 } else {
                     return ErrorMessage.getError(ErrorType.NotUnderstood).toString();
                 }
-//                if (nouns.size() == 0) {
-//                    return ();
-//                } else {
-//                    BasicDBObject whereQuery = new BasicDBObject();
-//                    itemType = nouns.get(0);
-//                    whereQuery.put("type", itemType);
-//                    BasicDBObject sort = new BasicDBObject();
-//                    sort.put("price", 1);
-//                    // Find the cheapest item
-//                    DBCursor cursor = collection.find(whereQuery);
-//                    if (cursor.hasNext()) {
-//                        cursor.sort(sort);
-//                        DBObject dbObject = cursor.next();
-//                        CommObject commObject = new CommObject();
-//                        commObject.mainItem = "" + dbObject.get("name");
-//                        commObject.message = dbObject.get("brand") + " is the cheapest " + dbObject.get("type") + " type";
-//                        commObject.location = "" + dbObject.get("location");
-//                        commObject.price = "" + dbObject.get("price");
-//                        commObject.type = "" + dbObject.get("type");
-//                        commObject.brand = "" + dbObject.get("brand");
-//                        System.out.println(commObject.toString());
-//                        return commObject.toString();
-//                    } else {
-//                        return failureMessage();
-//                    }
-//                }
-            } else {
-
+            }
+            // Get the price
+            else if(input.containsKey("NN") && input.get("NN").contains("price")){
+                // remove the price noun and use the noun list to get the price
+                nouns = input.get("NN");
+                nouns.remove("price");
+                PriceLogic priceLogic=new PriceLogic();
+                return priceLogic.price(nouns).toString();
             }
         }
         return null;

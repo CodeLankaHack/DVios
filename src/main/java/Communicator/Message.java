@@ -6,5 +6,6 @@ package Communicator;
 public enum Message {
     Price,
     Location,
-    Comparision
+    Comparision,
+    PriceList
 }
