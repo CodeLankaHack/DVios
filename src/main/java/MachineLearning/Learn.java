@@ -22,7 +22,7 @@ public class Learn {
     /*
     * Adding data in to the database
     *
-    * Name, Price, Location
+    * Name, PriceLogic, Location
     * */
     public boolean learn(String name, String price, String location, String brand, String type) {
 
