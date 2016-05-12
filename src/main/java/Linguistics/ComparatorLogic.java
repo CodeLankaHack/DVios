@@ -57,17 +57,13 @@ public class ComparatorLogic {
                     } else {
                         return ErrorMessage.getError(ErrorType.NotUnderstood);
                     }
+                }else{
+                    return ErrorMessage.getError(ErrorType.NotUnderstood);
                 }
-                break;
             case Name:
-                commObject.error = 1;
-                commObject.message = "Please try using a type name, eg: What is the cheapest soap.";
-                break;
+                return ErrorMessage.getError(ErrorType.NotUnderstood);
             default:
-                commObject.error = 1;
-                commObject.message = "I could not understand your query please try again.";
-                break;
+                return ErrorMessage.getError(ErrorType.NotUnderstood);
         }
-        return commObject;
     }
 }

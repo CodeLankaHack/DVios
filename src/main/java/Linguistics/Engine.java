@@ -28,6 +28,7 @@ public class Engine {
         String itemType = null;
         List<String> nouns = new ArrayList<String>();
         List<CommObject> output = new ArrayList<CommObject>();
+        // WHERE
         if (wrbAnalyzer(input)) {
             try {
                 itemName = input.get("NN").get(0);
