@@ -21,18 +21,18 @@ public class NounValidator {
 
     public List<String> getValidNouns(List<String> nouns) {
         List<String> strings = new ArrayList<String>();
-        DBObject whereQuery = new BasicDBObject();
+        DBObject whereQuery1 = new BasicDBObject();
+        DBObject whereQuery2 = new BasicDBObject();
         for (String i : nouns) {
-            whereQuery.put("name", java.util.regex.Pattern.compile(i));
-            DBCursor cursor = collection.find(whereQuery);
-            if (cursor.hasNext()) {
+            whereQuery1.put("name", java.util.regex.Pattern.compile(i));
+            DBCursor cursor1 = collection.find();
+            if (cursor1.hasNext()) {
                 strings.add(i);
-            } else {
-                whereQuery.removeField("name");
-                whereQuery.put("type", java.util.regex.Pattern.compile(i));
-                if (cursor.hasNext()) {
-                    strings.add(i);
-                }
+            }
+            whereQuery2.put("type", java.util.regex.Pattern.compile(i));
+            DBCursor cursor2 = collection.find(whereQuery2);
+            if (cursor2.hasNext() && !strings.contains(i)) {
+                strings.add(i);
             }
         }
         return strings;
