@@ -49,7 +49,10 @@
 
             // Send message to AI
             if(!isLeft){
-                $url = 'https://a3e833b3.ngrok.io/?msg=' + text;
+                $url = '/Connector.php?msg=' + text;
+                $.get($url, function (data) {
+                    alert(data['message']);
+                });
             }
 
             return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
