@@ -23,7 +23,7 @@ or die("error: failed to write to socket\n");
 $reply = socket_read($sock, 10000, PHP_NORMAL_READ) //Reading the reply from socket
 or die("error: failed to read from socket\n");
 header('Content-Type: application/json');
-$ar =array("message"=>"sex") ;
-echo json_encode($ar);
+header('Content-Type: application/json');
+echo $reply;
 
 ?>

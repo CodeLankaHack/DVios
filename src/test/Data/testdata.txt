@@ -1,0 +1,170 @@
+Juice
+Mango
+MD
+130
+Drink refrigerator
+Juice
+Mango
+KIST
+150
+Drink refrigerator
+Juice
+Mango
+KVC
+140
+Drink refrigerator
+Juice
+Apple
+KIST
+280
+Drink refrigerator
+Juice
+Apple
+Berry
+300
+Drink refrigerator
+Juice
+Apple
+MD
+270
+Drink refrigerator
+Juice
+Blueberry
+Berry
+320
+Drink refrigerator
+Juice
+Blueberry
+MD
+300
+Drink refrigerator
+Juice
+Blueberry
+KIST
+280
+Drink refrigerator
+Juice
+Orange
+KIST
+180
+Drink refrigerator
+Juice
+Orange
+MD
+200
+Drink refrigerator
+Juice
+Orange
+KVC
+200
+Drink refrigerator
+Vegetable
+Bigonion
+Keels
+110
+vegetable stall
+Vegetable
+Tomatoes
+Keels
+275
+vegetable stall
+Vegetable
+carrot
+Keels
+80
+vegetable stall
+Vegetable
+potato
+Keels
+125
+vegetable stall
+Vegetable
+Lettuce
+Keels
+150
+vegetable stall
+Vegetable
+Rice
+Keels
+90
+vegetable stall
+Vegetable
+cabbage
+Keels
+125
+vegetable stall
+Vegetable
+bellpepper
+Keels
+400
+vegetable stall
+Vegetable
+brinjal
+Keels
+120
+vegetable stall
+Vegetable
+beans
+Keels
+130
+vegetable stall
+Vegetable
+Devilbeans
+Keels
+250
+vegetable stall
+Youghurt
+yoghurt
+Newdale
+30
+Dairies Refrigerator
+Youghurt
+youghurt
+Highland
+35
+Dairies Refrigerator
+Youghurt
+youghurt
+Lucky
+30
+Dairies Refrigerator
+Soap
+Strawberry & Cream
+Lux
+48
+Soap stall
+Soap
+Creamy White
+Lux
+48
+Soap stall
+Soap
+Purple Lotus & Cream
+Lux
+45
+Soap stall
+Soap
+Nature Pure
+Lux
+48
+Soap stall
+Soap
+Strawberry & Cream
+Lux
+35
+Soap stall
+Soap
+Antibacterial Sensitive bar
+Dettol
+45
+Soap stall
+Soap
+Antibacterial
+Dettol
+48
+Soap stall
+Soap
+Refresher
+Dettol
+35
+Soap stall
