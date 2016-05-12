@@ -59,22 +59,63 @@
         };
         processResponse = function (response) {
             setTimeout(function () {
-                sendMessage(response['message'], true);
+                setBotState(response['messageType']);
 
                 if(response['messageType']=='Comparision'){
-                    $('.panel').fadeIn(500);
-                    $('.panel').empty();
-                    $('.panel').append("<div class=\"panel-heading\"><h3 class=\"panel-title\">Cheapest Item</h3></div><div class=\"panel-body\">" + response['mainItem'] + "<br>Rs. " + response['price'] + "</div>");
+                    sendMessage(response['message'], true);
+                    $('#display-info').empty();
+                    $('#display-info').append("<div style='display: none;' class=\"panel panel-yellow\"><div class=\"panel-heading\"><h3 class=\"panel-title\">Item</h3></div><div class=\"panel-body\">Product name: " + response['mainItem'] + "<br>Brand: " + response['brand'] + "<br>Price: Rs. " + response['price'] + "</div></div>");
+                    $('.panel-yellow').fadeIn(1000);
                 }
                 else if(response['messageType']=='Location'){
-
+                    sendMessage(response['message'], true);
                 }
                 else if(response['messageType']=='Price'){
-
+                    sendMessage(response['message'], true);
+                    $('#display-info').empty();
+                    $('#display-info').append("<div style='display: none;' class=\"panel panel-success\"><div class=\"panel-heading\"><h3 class=\"panel-title\">Item</h3></div><div class=\"panel-body\">Product name: " + response['mainItem'] + "<br>Brand: " + response['brand'] + "<br>Price: Rs. " + response['price'] + "</div></div>");
+                    $('.panel-success').fadeIn(1000);
+                }
+                else if(response['messageType']=='PriceList'){
+                    $('#display-info').empty();
+                    var i=0;
+                    for(i=0;i<response['related'].length;i++){
+                        $('#display-info').append("<div style='display: none;' class=\"panel panel-info\"><div class=\"panel-heading\"><h3 class=\"panel-title\">Item</h3></div><div class=\"panel-body\">Product name: " + response['related'][i]['mainItem'] + "<br>Brand: " + response['related'][i]['brand'] + "<br>Price: Rs. " + response['related'][i]['price'] + "</div></div>");
+                        $('.panel-info').fadeIn(1000);
+                    }
                 }
             }, 1000);
 
         };
+
+        setBotState = function (state) {
+            if(state=='Comparision'){
+                $('.animation-info').hide();
+                $('#display-image').hide()
+                $('#display-info').show();
+            }
+            else if(state=='Location'){
+                $('.animation-info').hide();
+                $('#display-image').show();
+                $('#display-info').show();
+            }
+            else if(state=='Price'){
+                $('.animation-info').hide();
+                $('#display-image').hide()
+                $('#display-info').show();
+            }
+            else if(state=='PriceList'){
+                $('.animation-info').hide();
+                $('#display-image').hide()
+                $('#display-info').show();
+            }
+            else if(state=='Reset'){
+                $('.animation-info').show();
+                $('#display-image').hide()
+                $('#display-info').hide();
+            }
+        };
+
         $('.send_message').click(function (e) {
             return sendMessage(getMessageText(), false);
         });

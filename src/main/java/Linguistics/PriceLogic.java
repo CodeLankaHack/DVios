@@ -42,7 +42,7 @@ public class PriceLogic {
                     if (cursor.hasNext()) {
                         DBObject dbObject = cursor.next();
                         CommObject commObject = new CommObject();
-                        commObject.messageType = Message.Location;
+                        commObject.messageType = Message.Price;
                         commObject.mainItem = "" + dbObject.get("name");
                         commObject.price = "" + dbObject.get("price");
                         commObject.type = "" + dbObject.get("type");
