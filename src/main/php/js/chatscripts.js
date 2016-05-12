@@ -60,11 +60,20 @@
         processResponse = function (response) {
             setTimeout(function () {
                 sendMessage(response['message'], true);
+
+                if(response['messageType']=='Comparision'){
+                    $('.panel').fadeIn(500);
+                    $('.panel').empty();
+                    $('.panel').append("<div class=\"panel-heading\"><h3 class=\"panel-title\">Cheapest Item</h3></div><div class=\"panel-body\">" + response['mainItem'] + "<br>Rs. " + response['price'] + "</div>");
+                }
+                else if(response['messageType']=='Location'){
+
+                }
+                else if(response['messageType']=='Price'){
+
+                }
             }, 1000);
 
-            if(response['requestType']){
-                    
-            }
         };
         $('.send_message').click(function (e) {
             return sendMessage(getMessageText(), false);
