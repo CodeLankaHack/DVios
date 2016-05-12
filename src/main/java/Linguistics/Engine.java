@@ -42,7 +42,7 @@ public class Engine {
             }
             if (itemName == null) {
                 System.out.println("Item not available at the moment");
-                return failureMessage();
+                return ErrorMessage.getError("Item not available at the moment").toString();
             }
             // read data and generate the search query
             BasicDBObject whereQuery = new BasicDBObject();
@@ -61,7 +61,7 @@ public class Engine {
                 return object.toString();
             } else {
 
-                return failureMessage();
+                return ErrorMessage.getError("Item not available at the moment").toString();
             }
 
         }
@@ -82,46 +82,45 @@ public class Engine {
                     nouns = input.get("NN");
                 if (input.containsKey("NNS"))
                     nouns.addAll(input.get("NNS"));
-                if (nouns.size() == 0) {
-                    return failureMessage();
-                } else {
-                    BasicDBObject whereQuery = new BasicDBObject();
-                    itemType = nouns.get(0);
-                    whereQuery.put("type", itemType);
-                    BasicDBObject sort = new BasicDBObject();
-                    sort.put("price", 1);
-                    // Find the cheapest item
-                    DBCursor cursor = collection.find(whereQuery);
-                    if (cursor.hasNext()) {
-                        cursor.sort(sort);
-                        DBObject dbObject = cursor.next();
-                        CommObject commObject = new CommObject();
-                        commObject.mainItem = "" + dbObject.get("name");
-                        commObject.message = dbObject.get("brand") + " is the cheapest " + dbObject.get("type") + " type";
-                        commObject.location = "" + dbObject.get("location");
-                        commObject.price = "" + dbObject.get("price");
-                        commObject.type = "" + dbObject.get("type");
-                        commObject.brand = "" + dbObject.get("brand");
-                        System.out.println(commObject.toString());
-                        return commObject.toString();
-                    } else {
-                        return failureMessage();
-                    }
+                ComparatorLogic comparatorLogic = new ComparatorLogic();
+                String comparator = (input.get("JJS").size() != 0) ? input.get("JJS").get(0) : null;
+                if (comparator != null) {
+                    return comparatorLogic.compare(nouns, comparator).toString();
+                }else{
+                    return ErrorMessage.getError(ErrorType.NotUnderstood).toString();
                 }
+//                if (nouns.size() == 0) {
+//                    return ();
+//                } else {
+//                    BasicDBObject whereQuery = new BasicDBObject();
+//                    itemType = nouns.get(0);
+//                    whereQuery.put("type", itemType);
+//                    BasicDBObject sort = new BasicDBObject();
+//                    sort.put("price", 1);
+//                    // Find the cheapest item
+//                    DBCursor cursor = collection.find(whereQuery);
+//                    if (cursor.hasNext()) {
+//                        cursor.sort(sort);
+//                        DBObject dbObject = cursor.next();
+//                        CommObject commObject = new CommObject();
+//                        commObject.mainItem = "" + dbObject.get("name");
+//                        commObject.message = dbObject.get("brand") + " is the cheapest " + dbObject.get("type") + " type";
+//                        commObject.location = "" + dbObject.get("location");
+//                        commObject.price = "" + dbObject.get("price");
+//                        commObject.type = "" + dbObject.get("type");
+//                        commObject.brand = "" + dbObject.get("brand");
+//                        System.out.println(commObject.toString());
+//                        return commObject.toString();
+//                    } else {
+//                        return failureMessage();
+//                    }
+//                }
             } else {
 
             }
         }
         return null;
 
-    }
-
-    private String failureMessage() {
-        CommObject commObject = new CommObject();
-        commObject.error = 1;
-        commObject.message = "We couldn't find any match. Please try again";
-        System.out.println(commObject.toString());
-        return commObject.toString();
     }
 
     /*

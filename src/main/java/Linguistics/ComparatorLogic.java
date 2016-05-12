@@ -1,13 +1,11 @@
 package Linguistics;
 
 import Communicator.CommObject;
+import Communicator.Message;
 import DBChecker.Attribute;
 import DBChecker.AttributeDetector;
 import DBChecker.NounValidator;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
+import com.mongodb.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,20 +16,28 @@ import java.util.List;
  */
 public class ComparatorLogic {
     private DBCollection collection;
+    private DB db;
+    private MongoClient mongoClient;
+    private List<String> validNouns;
 
     // Noun list, comparator cheapest,cheaper,
     public CommObject compare(List<String> nouns, String comparator) {
+        mongoClient = new MongoClient("localhost", 27017);
+        db = mongoClient.getDB("googleIO");
+        collection = db.getCollection("ai");
         // Get the nounds that are in the DB
-        List<String> validNouns = (new NounValidator()).getValidNouns(nouns);
+        validNouns = (new NounValidator()).getValidNouns(nouns);
         // Detect the attribute of the first noun in the DB
-        System.out.println(Arrays.toString(validNouns.toArray()));
         Attribute attribute = (new AttributeDetector()).getAttribute(validNouns.get(0));
         CommObject commObject = new CommObject();
         switch (attribute) {
             case Type:
                 if (comparator.toLowerCase().equals("cheapest")) {
-                    String item = nouns.get(0);
+                    String item = validNouns.get(0);
                     BasicDBObject whereQuery = new BasicDBObject();
+                    if (validNouns.size() == 0) {
+                        return ErrorMessage.getError(ErrorType.NotFound);
+                    }
                     whereQuery.put("type", item);
                     BasicDBObject sort = new BasicDBObject();
                     sort.put("price", 1);
@@ -46,25 +52,22 @@ public class ComparatorLogic {
                         commObject.price = "" + dbObject.get("price");
                         commObject.type = "" + dbObject.get("type");
                         commObject.brand = "" + dbObject.get("brand");
-                        System.out.println(commObject.toString());
+                        commObject.messageType = Message.Comparision;
+                        return commObject;
                     } else {
-                        commObject.error = 1;
-                        commObject.message = "We couldn't identify what you said. Please try again.";
-                        System.out.println(commObject.toString());
+                        return ErrorMessage.getError(ErrorType.NotUnderstood);
                     }
                 }
                 break;
             case Name:
                 commObject.error = 1;
                 commObject.message = "Please try using a type name, eg: What is the cheapest soap.";
-                System.out.println(commObject.toString());
                 break;
             default:
                 commObject.error = 1;
                 commObject.message = "I could not understand your query please try again.";
-                System.out.println(commObject.toString());
                 break;
         }
-        return null;
+        return commObject;
     }
 }
