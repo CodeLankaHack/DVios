@@ -1,5 +1,9 @@
 package SocketConnector;
 
+import Language.Classifier;
+import Language.Parser;
+import Linguistics.Engine;
+
 import java.io.*;
 import java.net.ServerSocket;
 
@@ -44,8 +48,8 @@ public class Socket {
         }
     }
 
-//    static String getResponse(String s) {
-//        Classifier classifier = p.getClassifier(s);
-//        return engine.run(classifier.getHashMap());
-//    }
+    static String getResponse(String s) {
+        Classifier classifier = p.getClassifier(s);
+        return engine.run(classifier.getHashMap());
+    }
 }
