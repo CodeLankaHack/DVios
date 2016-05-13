@@ -20,3 +20,16 @@ An interactive shopping assistant
 ### Our technologies
 * LEI socket for connecting PHP and JAVA for better performance and scalabiltity
 * MongoDB knowledge base for storing the knowledge base
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
