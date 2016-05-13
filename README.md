@@ -10,6 +10,7 @@ An interactive shopping assistant. Introducing Lei the AI for supermarkets
 
 ###Our solution
 
+* Youtube URL: https://youtu.be/hMhY5aU0kYQ
 * An interactive AI name LEI to assist customers, which in Afrikans means the guider/ assistant.
 
 ## Technologies being used
