@@ -5,6 +5,61 @@
     <link href="css/styles.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/chatscripts.js"></script>
+    <script src="js/speech.1.0.0.js"></script>
+
+    <script>
+
+        var client;
+        var request;
+
+
+        function getOxfordKey() {
+            return 'a4ba2016f89f4f8a90c38417e21a1468';
+        }
+
+        function getLanguage() {
+            return "en-us";
+        }
+
+        function clearText() {
+            document.getElementById("output").value = "";
+        }
+
+        function setText(text) {
+            document.getElementById("output").value += text;
+        }
+
+        function start() {
+            var mode = getMode();
+            var luisCfg = getLuisConfig();
+
+            clearText();
+
+            client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createMicrophoneClient(
+                    mode,
+                    getLanguage(),
+                    getOxfordKey(),
+                    getOxfordKey());
+            client.startMicAndRecognition();
+            setTimeout(function () {
+                client.endMicAndRecognition();
+            }, 5000);
+
+            client.onPartialResponseReceived = function (response) {
+                // setText(response);
+            }
+
+            client.onFinalResponseReceived = function (response) {
+                // setText(JSON.stringify(response));
+                sendMessage(response[0]['display'], false);
+            }
+
+            client.onIntentReceived = function (response) {
+                setText(response);
+            };
+        }
+
+    </script>
 
     <style>
 
@@ -68,6 +123,12 @@
     <div id="display-info" style="margin-top: 10px;"></div>
 </div>
 <div id="location"></div>
+
+<script>
+    $(document).ready(function () {
+       start();
+    });
+</script>
 
 </body>
 </html>
