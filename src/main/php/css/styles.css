@@ -13,6 +13,7 @@
     overflow: scroll;
 }
 
+
 #location{
     position: absolute;
     width: 77%;
@@ -27,6 +28,7 @@
     background-color: #f8f8f8;
     overflow: scroll;
 }
+
 
 .animation-info{
     height: 99%;

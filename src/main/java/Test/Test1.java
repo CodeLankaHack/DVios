@@ -16,6 +16,7 @@ public class Test1 {
         List<String> strings=new ArrayList<String>();
         strings.add("soap");
         System.out.println(Arrays.toString(nounValidator.getValidNouns(strings).toArray()));
+        
 //        MongoClient mongoClient = new MongoClient("localhost", 27017);
 //        DB db = mongoClient.getDB("googleIO");
 //        DBCollection collection = db.getCollection("ai");
