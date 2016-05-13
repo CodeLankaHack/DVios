@@ -5,6 +5,35 @@
     <link href="css/styles.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/chatscripts.js"></script>
+
+    <style>
+
+        html{
+            overflow:hidden;
+        }
+
+    </style>
+
+    <script>
+
+        window.onload = function() {
+            var startPos;
+            var geoSuccess = function(position) {
+                startPos = position;
+                var latitude = startPos.coords.latitude;
+                var longitude = startPos.coords.longitude;
+
+                var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude;
+                $.get(url, function (data) {
+                   var address = data['results'][0]['formatted_address'];
+                    $('#location').append("<div class=\"panel panel-info\"><div class=\"panel-heading\"><h3 style='text-align: center;' class=\"panel-title\">Super Center. " + address + "</h3></div></div>");
+                });
+
+            };
+            navigator.geolocation.getCurrentPosition(geoSuccess);
+        };
+
+    </script>
 </head>
 <body>
 
@@ -36,9 +65,9 @@
 <div class="info-window">
     <img class="animation-info" src="img/animation-big.gif">
     <img id="display-image" src="img/place1.jpg" style="display: none;">
-    <div id="display-info" style="margin-top: 10px;">
-    </div>
+    <div id="display-info" style="margin-top: 10px;"></div>
 </div>
+<div id="location"></div>
 
 </body>
 </html>
