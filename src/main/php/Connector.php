@@ -24,6 +24,7 @@ $reply = socket_read($sock, 10000, PHP_NORMAL_READ) //Reading the reply from soc
 or die("error: failed to read from socket\n");
 header('Content-Type: application/json');
 header('Content-Type: application/json');
+
 echo $reply;
 
 ?>
